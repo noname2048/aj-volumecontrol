@@ -3,7 +3,7 @@
     height: 30px;
     border: 1px solid black;
     position: relative;
-    transition: all 0.1s;
+    transition: all 0.2s;
 
     display: flex;
     justify-content: row;
@@ -50,6 +50,8 @@
     position: absolute;
     z-index: 3;
     margin: auto;
+    transition: left 0.5s;
+    transition-timing-function: ease-out;
 }
 
 .line {

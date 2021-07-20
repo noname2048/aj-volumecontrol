@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="jquery.js"></script>
+    <script src="Hammer.js"></script>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
@@ -19,12 +20,30 @@
     </div>
     <h4 class="box-vol">Volume: <span>0</span></h4>
     <script>
-        let element = document.querySelector('right-box');
+        let element = document.querySelector('.right-box');
         let rightBox = new Hammer(element);
         rightBox.get('pan').set({direction: Hammer.DIRECTION_ALL});
+        let box = $('.big-box');
+        leftTopX = box.offset().left;
+        leftTopY = box.offset().top;
+
         rightBox.on('pandown', function(e){
-            console.log(e.deltaY)
+            // console.log(e.deltaY)
+            if (e.deltaY > 0) {
+                angle = Math.atan(e.deltaY / 210);
+                box.css("transform-origin", "left top")
+                box.css('transform', `rotate(${angle}rad)`);
+                let leftValue = parseFloat($('.circle').css('left').slice(0, -2));
+                if ((leftValue+ e.deltaY / 2) < 180) {
+                    $('.circle').css('left', '+=' + e.deltaY/2);
+                }
+            }
         })
+
+        rightBox.on('panend', function(e) {
+            $('.big-box').css('transform', 'rotate(0deg)')
+        });
+        
     </script>
 </body>
 </html>

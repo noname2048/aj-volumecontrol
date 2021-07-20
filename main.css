@@ -1,0 +1,61 @@
+.big-box {
+    width: 200px;
+    height: 30px;
+    border: 1px solid black;
+    position: relative;
+    transition: all 0.1s;
+
+    display: flex;
+    justify-content: row;
+    align-items: center;
+}
+
+.left-box {
+    position: absolute;
+    left: 0;
+    background-color: bisque;
+    height: 100%;
+    width: 30%;
+    z-index: 5;
+}
+
+.right-box {
+    position: absolute;
+    right: 0;
+    background-color: cornflowerblue;
+    height: 100%;
+    width: 30%;
+    z-index: 5;
+}
+
+.small-box {
+    position: static;
+    margin: 2px;
+    background-color: goldenrod;
+    height: 10px;
+    width: 180px;
+    z-index: 2;
+    margin: auto;
+
+    display: flex;
+    justify-content: row;
+    align-items: center;
+}
+
+.circle {
+    border-radius: 50%;
+    background: #ff4c4c;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    z-index: 3;
+    margin: auto;
+}
+
+.line {
+    height: 1px;
+    width: 180px;
+    background: linear-gradient(to right, #ff4c4c, #b690ff);
+    position: absolute;
+    margin: auto;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.js"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="big-box">
+        <div class="left-box"></div>
+        <div class="right-box"></div>
+        <div class="small-box">
+            <div class="circle"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+    <h4 class="box-vol">Volume: <span>0</span></h4>
+    <script>
+        let element = document.querySelector('right-box');
+        let rightBox = new Hammer(element);
+        rightBox.get('pan').set({direction: Hammer.DIRECTION_ALL});
+        rightBox.on('pandown', function(e){
+            console.log(e.deltaY)
+        })
+    </script>
+</body>
+</html>

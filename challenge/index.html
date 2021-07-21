@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.js"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="big-box">
+        <div class="left-box"></div>
+        <div class="right-box"></div>
+        <div class="small-box">
+            <div class="circle"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+    <h4 class="box-vol">Volume: <span>0</span></h4>
+    <script>
+        // 드래그용 변수
+        let dragStartPoint = {"x": undefined, "y": undefined};
+        let dragPoint = {"x": undefined, "y": undefined};
+
+        // 회전하는 박스의 중심점 구하기
+        let bigBox = document.querySelector('.big-box');
+        boxRect = bigBox.getBoundingClientRect();
+        console.log(boxRect);
+        leftTopConer = {'x': boxRect.left, 'y': boxRect.top};
+        rightTopConer = {'x': boxRect.right, 'y': boxRect.top};
+
+        // 드래그시 일어나는 과정
+        let rightBox = document.querySelector('.right-box');
+        let originAngle = 0.0;
+        let newAngle = 0.0;
+        
+        rightBox.addEventListener('dragstart', function(event) {
+            dragStartPoint.x = event.x;
+            dragStartPoint.y = event.y;
+
+            originAngle = Math.atan((boxRect.y - event.y)/(boxRect.x - event.x));
+            dragPoint.x = undefined;
+            dragPoint.y = undefined;
+        });
+
+        let circle = document.querySelector('.circle');
+        let circleLeft = 0;
+
+        rightBox.addEventListener('drag', function(event) {
+            if (event.x == 0) return;
+
+            dragPoint.x = event.x;
+            dragPoint.y = event.y;
+
+            newAngle = Math.atan((boxRect.y - event.y)/(boxRect.x - event.x));
+            deltaY = dragPoint.y - dragStartPoint.y;
+
+            if (deltaY !== 0) {
+                bigBox.style.transformOrigin = 'left top';
+                bigBox.style.transform = `rotate(${newAngle - originAngle}rad)`;
+            }
+
+            deltaAngle = newAngle - originAngle
+            circleLeft = Math.min(circleLeft + deltaAngle * 4 , 180);
+            circle.style.left = parseInt(circleLeft) + 'px';
+        });
+        
+        rightBox.addEventListener('dragend', function(event) {
+            bigBox.style.transform = 'rotate(0deg)';
+        });
+
+    </script>
+</body>
+</html>

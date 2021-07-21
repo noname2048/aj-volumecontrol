@@ -13,7 +13,7 @@
 .left-box {
     position: absolute;
     left: 0;
-    background-color: bisque;
+    /* background-color: bisque; */
     height: 100%;
     width: 30%;
     z-index: 5;
@@ -22,7 +22,7 @@
 .right-box {
     position: absolute;
     right: 0;
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
     height: 100%;
     width: 30%;
     z-index: 5;
@@ -31,7 +31,7 @@
 .small-box {
     position: static;
     margin: 2px;
-    background-color: goldenrod;
+    /* background-color: goldenrod; */
     height: 10px;
     width: 180px;
     z-index: 2;

@@ -19,6 +19,7 @@
     </div>
     <h4 class="box-vol">Volume: <span>0</span></h4>
     <script>
+        let volumeText = document.querySelector('.box-vol');
         // 드래그용 변수
         let dragStartPoint = {"x": undefined, "y": undefined};
         let dragPoint = {"x": undefined, "y": undefined};
@@ -62,8 +63,12 @@
             }
 
             deltaAngle = newAngle - originAngle
+            
             circleLeft = Math.min(circleLeft + deltaAngle * 2 , 180);
-            circle.style.left = parseInt(circleLeft) + 'px';
+            leftValue = parseInt(circleLeft);
+            circle.style.left = leftValue + 'px';
+
+            volumeText.innerHTML = 'Volume: ' + parseInt(leftValue * 100 / 180);
         });
         
         rightBox.addEventListener('dragend', function(event) {
